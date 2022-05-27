@@ -11,10 +11,6 @@
 extends Node
 
 var save_dic: Dictionary
-
-var ui
-var msg
-
 var save_path = "user://save.dat"
 
 
@@ -35,3 +31,8 @@ func load_data():
 			save_dic = file.get_var()
 			file.close()
 			print("WE_CAT: Dictonary loaded!")
+
+# ====== ACTUAL GAME CODE ========
+var ui
+var msg
+var player 

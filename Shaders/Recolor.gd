@@ -1,6 +1,9 @@
+tool
 extends ColorRect
 class_name ColorManager
 onready var tween = $Tween
+export var starting_color: String = "grays"
+export var apply_color : bool
 
 export var palettes: Dictionary = {
 	grays = [
@@ -32,12 +35,23 @@ export var palettes: Dictionary = {
 		Color("#044148"),
 		Color("#00313C"),
 		Color("#00232A")
+	],
+	destatur = [
+		Color("#f0f0eb"),
+		Color("#ffff8f"),
+		Color("#7be098"),
+		Color("#849ad8"),
+		Color("#e8b382"),
+		Color("#d8828e"),
+		Color("#605164"),
+		Color("#545155"),
 	]
 }
 
 
 func _ready():
 	Wiggle.recolor = self
+	set_current_palette(palettes[starting_color])
 	pass
 
 
@@ -57,6 +71,12 @@ func set_current_palette(palette: Array, transition_t: float = 0):
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		var p = palettes[palettes.keys()[randi() % palettes.size()]]
-		set_current_palette(p, 0.7)
+	if Engine.editor_hint:
+		if apply_color:
+			print("Applying color: ", starting_color)
+			set_current_palette(palettes[starting_color], 0)
+			apply_color = false
+
+	#if Input.is_action_just_pressed("ui_accept"):
+	#	var p = palettes[palettes.keys()[randi() % palettes.size()]]
+	#	set_current_palette(p, 0.7)

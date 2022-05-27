@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=5]
+
+[node name="Level4" type="Node2D"]
+position = Vector2( 0, -1 )
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 319, 321 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 640 )
+
+[node name="LevelEnd2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 204 )
+next_level = 5
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Wall" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 238, 240 )
+scale = Vector2( 1, 240 )
+
+[node name="Wall5" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 163, 240 )
+scale = Vector2( 1, 180 )
+
+[node name="Wall6" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 124, 240 )
+
+[node name="Wall7" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 125, 140 )
+rotation = -1.57079
+scale = Vector2( 1, 70 )
+
+[node name="Wall8" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 57, 140 )
+scale = Vector2( 1, 80 )
+
+[node name="Wall9" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 55, 62 )
+rotation = 1.57079
+scale = Vector2( 1, 108 )
+
+[node name="Wall2" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 2, 240 )
+scale = Vector2( 1, 240 )
+
+[node name="Wall3" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 0, 238 )
+rotation = 1.5708
+scale = Vector2( 1, 240 )
+
+[node name="Wall4" parent="Level" instance=ExtResource( 5 )]
+position = Vector2( 240, 2 )
+rotation = -158.65
+scale = Vector2( 1, 240 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 95, 217 )

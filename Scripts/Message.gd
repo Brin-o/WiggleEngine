@@ -9,7 +9,7 @@ func _ready():
 	CAT.msg = self
 	#set_message("test hello helloo")
 	randomize()
-	set_message("wiggle engine")
+	#set_message("wiggle engine")
 
 
 func set_message(msg):

@@ -23,7 +23,7 @@ void fragment()
 		COLOR = c4;
 	}else if (COLOR.r > 0.37){
 		COLOR = c5;
-	}else if (COLOR.r > 0.24){
+	}else if (COLOR.r > 0.23){
 		COLOR = c6;
 	}else if (COLOR.r > 0.12){
 		COLOR = c7;

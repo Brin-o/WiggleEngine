@@ -1,0 +1,140 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/LevelBuilder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=7]
+
+[node name="TestWorld" type="Node2D"]
+position = Vector2( 0, -1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 319, 321 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 640 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 112, 113 )
+z_index = 1
+C_OVERHEATING = Color( 0.25098, 0.25098, 0.25098, 1 )
+
+[node name="LevelBuilder" type="Node2D" parent="."]
+position = Vector2( 0, 1 )
+script = ExtResource( 3 )
+selected_num = 1
+target_path = NodePath("../LVL")
+
+[node name="Label" type="Label" parent="LevelBuilder"]
+margin_top = 100.0
+margin_right = 283.0
+margin_bottom = 153.0
+
+[node name="BuildingBlocks" type="Node2D" parent="LevelBuilder"]
+
+[node name="Wall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -210.52, 104.985 )
+rotation = 32.9867
+scale = Vector2( 11, 45 )
+
+[node name="OverheatWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 5 )]
+position = Vector2( 781.737, -230.07 )
+rotation = 32.9867
+scale = Vector2( 11, 45 )
+
+[node name="LVL" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 226.118, 48.7397 )
+rotation = -1.5708
+scale = Vector2( 1, 140 )
+
+[node name="Wall2" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 227.802, 153.129 )
+rotation = -1.5708
+scale = Vector2( 1, 140 )
+
+[node name="Wall3" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 464.08, 44.8111 )
+rotation = -1.5708
+scale = Vector2( 1, 140 )
+
+[node name="Wall4" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 461.835, 155.374 )
+rotation = -1.5708
+scale = Vector2( 1, 140 )
+
+[node name="Wall5" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 230.047, 153.129 )
+rotation = 0.785397
+scale = Vector2( 1, 40 )
+
+[node name="Wall6" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 297.394, 73.4339 )
+rotation = 0.785397
+scale = Vector2( 1, 40 )
+
+[node name="Wall7" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 227.802, 48.7397 )
+rotation = 2.35619
+scale = Vector2( 1, 40 )
+
+[node name="Wall8" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 294.588, 127.873 )
+rotation = 2.35619
+scale = Vector2( 1, 40 )
+
+[node name="Wall9" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 86.3714, 50.9846 )
+rotation = -3.14159
+scale = Vector2( 1, 105 )
+
+[node name="Wall10" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 462.957, 50.9846 )
+rotation = -3.14159
+scale = Vector2( 1, 105 )
+
+[node name="OverheatWall" type="StaticBody2D" parent="LVL" groups=["gate_overheat", "wall"] instance=ExtResource( 5 )]
+modulate = Color( 0.509804, 0.509804, 0.509804, 1 )
+position = Vector2( 258.108, 124.506 )
+rotation = -5.56284e-07
+scale = Vector2( 1, 50 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="OverheatWall2" type="StaticBody2D" parent="LVL" groups=["gate_overheat", "wall"] instance=ExtResource( 5 )]
+modulate = Color( 0.509804, 0.509804, 0.509804, 1 )
+position = Vector2( 294.588, 126.19 )
+rotation = -5.56284e-07
+scale = Vector2( 1, 50 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="Wall11" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 253.618, 75.6788 )
+rotation = 1.57079
+scale = Vector2( 1, 45 )
+
+[node name="Wall12" type="StaticBody2D" parent="LVL" groups=["wall"] instance=ExtResource( 4 )]
+position = Vector2( 254.741, 125.628 )
+rotation = 1.57079
+scale = Vector2( 1, 45 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 6 )]
+position = Vector2( 417, 101 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 133, 375 )
+rotating = true
+current = true
+script = ExtResource( 7 )
