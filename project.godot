@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="WiggleEngine"
+config/name="VOZI"
 run/main_scene="res://WiggleEngine.tscn"
 config/icon="res://icon.png"
 
@@ -130,6 +130,6 @@ common/enable_pause_aware_picking=true
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.505882, 0.505882, 0.505882, 1 )
+environment/default_clear_color=Color( 0.729412, 0.537255, 0.537255, 1 )
 environment/default_environment="res://default_env.tres"
 quality/2d/use_pixel_snap=true

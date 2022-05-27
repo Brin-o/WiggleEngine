@@ -13,7 +13,8 @@ font_data = ExtResource( 2 )
 
 [node name="WiggleSetup" type="Node" parent="."]
 script = ExtResource( 4 )
-project_name = "WiggleEngine"
+project_name = "VOZI"
+include_date = false
 bg_color = Color( 0.729412, 0.537255, 0.537255, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
