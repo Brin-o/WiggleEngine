@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Message.gd" type="Script" id=1]
+[ext_resource path="res://Resaources/Squareskew.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Shaders/Recolour.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/WiggleSettings.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/we_colortest.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="Engine" type="Node2D"]
+
+[node name="WiggleSetup" type="Node" parent="."]
+script = ExtResource( 4 )
+project_name = "WiggleEngine"
+bg_color = Color( 0.729412, 0.537255, 0.537255, 1 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 180.0
+margin_bottom = 180.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 180, 180 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer"]
+position = Vector2( 90, 91 )
+scale = Vector2( 1.1125, 1.1125 )
+texture = ExtResource( 5 )
+
+[node name="Interface" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Message" type="Node2D" parent="Interface"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Interface/Message"]
+margin_left = 5.0
+margin_top = 68.0
+margin_right = 175.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.94902, 0.94902, 0.94902, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "not on time! be faster!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Tween" type="Tween" parent="Interface/Message"]
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="ColorRemap" parent="Shaders" instance=ExtResource( 3 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
