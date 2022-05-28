@@ -16,7 +16,7 @@ region_rect = Rect2( 0, 0, 640, 640 )
 
 [node name="LevelEnd2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 204 )
-next_level = 5
+next_level = "2"
 
 [node name="Level" type="Node2D" parent="."]
 

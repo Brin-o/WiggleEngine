@@ -17,6 +17,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 112, 113 )
+rotating = true
+current = true
+script = ExtResource( 10 )
+
 [node name="BG" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
@@ -27,7 +34,6 @@ z_index = 1
 [node name="LevelBuilder" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
 script = ExtResource( 9 )
-editingActive = true
 level_name = "Turns"
 target_path = NodePath("../LVL")
 
@@ -39,22 +45,23 @@ margin_bottom = 153.0
 [node name="BuildingBlocks" type="Node2D" parent="LevelBuilder"]
 
 [node name="NormalWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 5 )]
-position = Vector2( -304, 368 )
+visible = false
+position = Vector2( 0, 0 )
 rotation = 0.0
 
 [node name="OverheatWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 8 )]
 visible = false
-position = Vector2( 176, 208 )
+position = Vector2( 0, 0 )
 rotation = 18.8496
 
 [node name="SquidWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 176, 208 )
+position = Vector2( 0, 0 )
 rotation = 18.8496
 
 [node name="Wall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 2 )]
 visible = false
-position = Vector2( 176, 208 )
+position = Vector2( 0, 0 )
 rotation = 18.8496
 
 [node name="LVL" type="Node2D" parent="."]
@@ -128,7 +135,6 @@ scale = Vector2( 1, 15 )
 [node name="SquidWall" parent="LVL" instance=ExtResource( 4 )]
 position = Vector2( 592, 129 )
 rotation = -3.14159
-scale = Vector2( 1, 80 )
 
 [node name="Wall14" parent="LVL" instance=ExtResource( 2 )]
 position = Vector2( 592, 129 )
@@ -162,7 +168,6 @@ scale = Vector2( 1, 110 )
 [node name="Wall21" parent="LVL" instance=ExtResource( 2 )]
 position = Vector2( 96, 129 )
 rotation = -3.14159
-scale = Vector2( 1, 80 )
 
 [node name="Wall15" parent="LVL" instance=ExtResource( 2 )]
 position = Vector2( 688, 154 )
@@ -180,18 +185,15 @@ rotation = -2.0944
 scale = Vector2( 1, 45 )
 
 [node name="NormalWall" parent="LVL" instance=ExtResource( 5 )]
-position = Vector2( 160, 225 )
+position = Vector2( 296, 196 )
+rotation = 4.76995e-08
+
+[node name="NormalWall2" parent="LVL" instance=ExtResource( 5 )]
+position = Vector2( 408, 220 )
 rotation = 4.76995e-08
 
 [node name="LevelEnd" parent="." instance=ExtResource( 1 )]
 position = Vector2( 417, 101 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2( 112, 113 )
-rotating = true
-current = true
-script = ExtResource( 10 )
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 

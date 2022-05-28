@@ -1,11 +1,12 @@
 extends Area2D
 
-export(int) var next_level = 2
+export(String) var next_level = 2
 
 
 func _on_LevelEnd_body_entered(body: Node):
 	if body.is_in_group("player"):
-		Wiggle.change_scene_to_level(next_level)
+		#Wiggle.change_scene_to_level(next_level)
+		Wiggle.change_scene_to_named_level(next_level)
 
 
 var player

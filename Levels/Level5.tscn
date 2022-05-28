@@ -32,7 +32,6 @@ z_index = 1
 [node name="LevelEnd" type="Area2D" parent="."]
 position = Vector2( 131, 64 )
 script = ExtResource( 4 )
-next_level = 6
 
 [node name="Sprite" type="Sprite" parent="LevelEnd"]
 texture = ExtResource( 3 )

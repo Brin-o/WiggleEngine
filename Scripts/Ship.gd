@@ -35,6 +35,7 @@ func _ready():
 	CAT.player = self
 	player_copy = PackedScene.new()
 	player_copy.pack(self)
+	CAT.camera.target_position = self.position
 
 
 func _process(delta):

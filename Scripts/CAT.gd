@@ -32,7 +32,9 @@ func load_data():
 			file.close()
 			print("WE_CAT: Dictonary loaded!")
 
+
 # ====== ACTUAL GAME CODE ========
 var ui
 var msg
-var player 
+var player
+var camera
