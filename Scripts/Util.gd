@@ -64,13 +64,14 @@ func _process(delta):
 # no clue if this is smart but it works
 
 
-func find_player():
+func find_player(verbose = true):
 	var ply = get_tree().get_nodes_in_group("player")
 	if ply.size() == 0:
 		#print("ERROR: Can't find player node!")
 		return null
 	else:
-		print("player found!")
+		if verbose:
+			print("player found!")
 		return ply[0]
 
 

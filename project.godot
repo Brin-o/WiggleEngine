@@ -135,7 +135,9 @@ editor_place={
 [layer_names]
 
 2d_physics/layer_1="general"
-2d_physics/layer_2="overheat"
+2d_physics/layer_2="normal"
+2d_physics/layer_3="squid"
+2d_physics/layer_4="oh"
 
 [network]
 

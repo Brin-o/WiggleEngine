@@ -1,7 +1,12 @@
 tool
 extends Node2D
 
-export var selected_num: int = 0
+export var editingActive: bool = false
+#export var ignore_on_save: Array
+export var level_name = "Test"  #todo: implement this
+const LEVEL_PATH = "res://Levels/"
+
+var selected_num: int = 0
 var blocks
 var selected_node
 
@@ -54,18 +59,44 @@ func _enter_tree():
 	event.physical_scancode = KEY_SHIFT
 	InputMap.action_add_event("editor_shift", event)
 
+	if not InputMap.has_action("editor_ctrl"):
+		InputMap.add_action("editor_ctrl")
+	event = InputEventKey.new()
+	event.physical_scancode = KEY_CONTROL
+	InputMap.action_add_event("editor_ctrl", event)
+
+	if not InputMap.has_action("editor_alt"):
+		InputMap.add_action("editor_alt")
+	event = InputEventKey.new()
+	event.physical_scancode = KEY_ALT
+	InputMap.action_add_event("editor_alt", event)
+
+	if not InputMap.has_action("editor_s"):
+		InputMap.add_action("editor_s")
+	event = InputEventKey.new()
+	event.physical_scancode = KEY_S
+	InputMap.action_add_event("editor_s", event)
+
 
 var target_rotation = 0
-var target_scale := Vector2(1, 100)
+var target_scale := Vector2(1, 80)
 
 
 func _process(delta):
+	if !Engine.editor_hint:
+		editingActive = false
+
 	if Engine.editor_hint:
 		var build_target = get_node(target_path)
 
 		blocks = $BuildingBlocks.get_children()
 		for n in blocks:
 			n.visible = false
+			n.position = Vector2.ZERO
+			n.get_node("CollisionShape2D").disabled = true
+
+		if not editingActive:
+			return
 
 		selected_num = wrapi(selected_num, 0, blocks.size())
 
@@ -82,27 +113,47 @@ func _process(delta):
 
 		#edit currently selected node
 		if Input.is_action_just_pressed("editor_rotate"):
-			target_rotation += 15
+			var val = 10
+			if Input.is_action_pressed("editor_ctrl"):
+				val = 90
+			if Input.is_action_pressed("editor_alt"):
+				val = 5
+			target_rotation += val
 		if (
 			Input.is_action_just_pressed("editor_scale_up")
 			or (Input.is_action_pressed("editor_scale_up") and shift)
 		):
-			target_scale.y += 5
+			var val = grid_size / 2
+			if Input.is_action_pressed("editor_ctrl"):
+				val = 1
+			target_scale.y += val
 		if (
 			Input.is_action_just_pressed("editor_scale_down")
 			or (Input.is_action_pressed("editor_scale_down") and shift)
 		):
-			target_scale.y -= 5
+			var val = grid_size / 2
+			if Input.is_action_pressed("editor_ctrl"):
+				val = 1
+			target_scale.y -= val
 		if (
 			Input.is_action_just_pressed("editor_scale_left")
 			or (Input.is_action_pressed("editor_scale_left") and shift)
 		):
-			target_scale.x -= 5
+			var val = grid_size / 2
+			if Input.is_action_pressed("editor_ctrl"):
+				val = 1
+			target_scale.x -= val
 		if (
 			Input.is_action_just_pressed("editor_scale_right")
 			or (Input.is_action_pressed("editor_scale_right") and shift)
 		):
-			target_scale.x += 5
+			var val = grid_size / 2
+			if Input.is_action_pressed("editor_ctrl"):
+				val = 1
+			target_scale.x += val
+
+		target_scale.x = max(1, target_scale.x)
+		target_scale.y = max(1, target_scale.y)
 
 		selected_node.rotation_degrees = target_rotation
 		selected_node.scale = target_scale
@@ -110,15 +161,39 @@ func _process(delta):
 		#place node
 		if Input.is_action_just_pressed("ui_select"):
 			var b = selected_node.duplicate()
+			b.get_node("CollisionShape2D").disabled = false
 			build_target.add_child(b)
-			b.set_owner(get_tree().edited_scene_root)
 			b.global_position = selected_node.global_position
 			b.global_rotation = selected_node.global_rotation
+			b.set_owner(get_tree().edited_scene_root)
 
-		#if Input.is_action_just_pressed("ui_down"): selected_num -= 1
-		#debugtxt()
+		if Input.is_action_just_pressed("editor_s") and Input.is_action_pressed("editor_ctrl"):
+			save_level()
 		pass
 		#selected_node = get_children()[0]
+
+
+func save_level():
+	var packedLevel = PackedScene.new()
+	var _name = "Level" + level_name
+
+	#disable colour shader
+	var c_shader: ColorRect = get_node("../Shaders/ColorRemap")
+	c_shader.visible = false
+
+	get_parent().name = _name
+	var result = packedLevel.pack(get_parent())
+	#print(result)
+	if result == OK:
+		var path = LEVEL_PATH + level_name + ".tscn"
+		var error = ResourceSaver.save(path, packedLevel)
+		print(error)
+		print("WIGGLE ENGINE: Level saved at " + path)
+		c_shader.visible = true
+		get_parent().name = "LevelBuilder"
+	else:
+		print("WIGGLE ENGINE: Error occured saving the scene!")
+	pass
 
 
 func debugtxt():

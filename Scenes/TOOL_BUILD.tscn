@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/LevelBuilder.gd" type="Script" id=1]
+
+[node name="TOOL_BUILD" type="Node2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 1 )
+level_name = "WallDebug"
+target_path = NodePath("../LVL")
+
+[node name="Label" type="Label" parent="."]
+margin_top = 100.0
+margin_right = 283.0
+margin_bottom = 153.0
+
+[node name="BuildingBlocks" type="Node2D" parent="."]

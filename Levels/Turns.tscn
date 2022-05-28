@@ -1,0 +1,212 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/LevelParts/BG.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Shaders/Recolour.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/LevelBuilder.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=10]
+
+[node name="LevelTurns" type="Node2D"]
+position = Vector2( 0, -1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="BG" parent="." instance=ExtResource( 6 )]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 136, 166 )
+rotation = 0.0
+z_index = 1
+
+[node name="LevelBuilder" type="Node2D" parent="."]
+position = Vector2( 0, 1 )
+script = ExtResource( 9 )
+editingActive = true
+level_name = "Turns"
+target_path = NodePath("../LVL")
+
+[node name="Label" type="Label" parent="LevelBuilder"]
+margin_top = 100.0
+margin_right = 283.0
+margin_bottom = 153.0
+
+[node name="BuildingBlocks" type="Node2D" parent="LevelBuilder"]
+
+[node name="NormalWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 5 )]
+position = Vector2( -304, 368 )
+rotation = 0.0
+
+[node name="OverheatWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 176, 208 )
+rotation = 18.8496
+
+[node name="SquidWall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 176, 208 )
+rotation = 18.8496
+
+[node name="Wall" parent="LevelBuilder/BuildingBlocks" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 176, 208 )
+rotation = 18.8496
+
+[node name="LVL" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Wall" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 96, 209 )
+rotation = 1.5708
+scale = Vector2( 1, 160 )
+
+[node name="Wall2" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 336, 209 )
+rotation = 1.5708
+scale = Vector2( 1, 160 )
+
+[node name="Wall3" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 208, 129 )
+rotation = 1.5708
+scale = Vector2( 1, 160 )
+
+[node name="Wall4" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 256, 209 )
+rotation = 1.0472
+scale = Vector2( 1, 45 )
+
+[node name="Wall5" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 336, 209 )
+rotation = -1.0472
+scale = Vector2( 1, 45 )
+
+[node name="Wall6" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 368, 129 )
+rotation = 2.0944
+scale = Vector2( 1, 45 )
+
+[node name="Wall7" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 448, 129 )
+rotation = -2.09439
+scale = Vector2( 1, 45 )
+
+[node name="Wall8" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 448, 129 )
+rotation = 1.57079
+scale = Vector2( 1, 95 )
+
+[node name="Wall9" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 496, 209 )
+rotation = 1.57079
+scale = Vector2( 1, 45 )
+
+[node name="Wall10" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 544, 193 )
+rotation = 1.83259
+scale = Vector2( 1, 55 )
+
+[node name="Wall11" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 544, 145 )
+rotation = 1.30899
+scale = Vector2( 1, 55 )
+
+[node name="Wall12" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 544, 209 )
+rotation = 2.38498e-07
+scale = Vector2( 1, 15 )
+
+[node name="Wall13" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 544, 129 )
+rotation = -3.14159
+scale = Vector2( 1, 15 )
+
+[node name="SquidWall" parent="LVL" instance=ExtResource( 4 )]
+position = Vector2( 592, 129 )
+rotation = -3.14159
+scale = Vector2( 1, 80 )
+
+[node name="Wall14" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 592, 129 )
+rotation = 1.8326
+
+[node name="Wall16" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 608, 209 )
+rotation = 3.14159
+scale = Vector2( 1, 65 )
+
+[node name="Wall17" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 544, 193 )
+rotation = 1.83259
+scale = Vector2( 1, 70 )
+
+[node name="Wall18" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 672, -47 )
+rotation = -2.87979
+scale = Vector2( 1, 60 )
+
+[node name="Wall19" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 720, -79 )
+rotation = -2.87979
+scale = Vector2( 1, 60 )
+
+[node name="Wall20" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 96, 129 )
+rotation = 1.57079
+scale = Vector2( 1, 110 )
+
+[node name="Wall21" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 96, 129 )
+rotation = -3.14159
+scale = Vector2( 1, 80 )
+
+[node name="Wall15" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 688, 154 )
+rotation = -3.14159
+scale = Vector2( 1, 120 )
+
+[node name="Wall22" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 608, 273 )
+rotation = 2.09439
+scale = Vector2( 1, 45 )
+
+[node name="Wall23" parent="LVL" instance=ExtResource( 2 )]
+position = Vector2( 688, 273 )
+rotation = -2.0944
+scale = Vector2( 1, 45 )
+
+[node name="NormalWall" parent="LVL" instance=ExtResource( 5 )]
+position = Vector2( 160, 225 )
+rotation = 4.76995e-08
+
+[node name="LevelEnd" parent="." instance=ExtResource( 1 )]
+position = Vector2( 417, 101 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 112, 113 )
+rotating = true
+current = true
+script = ExtResource( 10 )
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="ColorRemap" parent="Shaders" instance=ExtResource( 7 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 1248.0
+margin_bottom = 868.0
+starting_color = "ayy8"
+palettes = {
+"ayy8": [ Color( 0.945098, 0.94902, 0.843137, 1 ), Color( 1, 0.8, 0.552941, 1 ), Color( 1, 0.423529, 0.447059, 1 ), Color( 0.584314, 0.454902, 0.905882, 1 ), Color( 0.0156863, 0.431373, 0.45098, 1 ), Color( 0.576471, 0.717647, 0.733333, 1 ), Color( 0, 0.192157, 0.235294, 1 ), Color( 0, 0.137255, 0.164706, 1 ) ],
+"destatur": [ Color( 0.941176, 0.941176, 0.921569, 1 ), Color( 1, 1, 0.560784, 1 ), Color( 0.482353, 0.878431, 0.596078, 1 ), Color( 0.517647, 0.603922, 0.847059, 1 ), Color( 0.909804, 0.701961, 0.509804, 1 ), Color( 0.847059, 0.509804, 0.556863, 1 ), Color( 0.376471, 0.317647, 0.392157, 1 ), Color( 0.329412, 0.317647, 0.333333, 1 ) ],
+"grays": [ Color( 0.94902, 0.94902, 0.94902, 1 ), Color( 0.74902, 0.74902, 0.74902, 1 ), Color( 0.619608, 0.619608, 0.619608, 1 ), Color( 0.509804, 0.509804, 0.509804, 1 ), Color( 0.380392, 0.380392, 0.380392, 1 ), Color( 0.25098, 0.25098, 0.25098, 1 ), Color( 0.129412, 0.129412, 0.129412, 1 ), Color( 0.0117647, 0.0117647, 0.0117647, 1 ) ],
+"nyx": [ Color( 0.988235, 0.835294, 0.72549, 1 ), Color( 0.788235, 0.631373, 0.52549, 1 ), Color( 0.627451, 0.45098, 0.462745, 1 ), Color( 0.52549, 0.372549, 0.447059, 1 ), Color( 0.309804, 0.286275, 0.380392, 1 ), Color( 0.0901961, 0.227451, 0.317647, 1 ), Color( 0.00784314, 0.168627, 0.254902, 1 ), Color( 0.0196078, 0.0784314, 0.121569, 1 ) ]
+}

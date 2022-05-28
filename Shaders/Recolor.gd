@@ -3,7 +3,7 @@ extends ColorRect
 class_name ColorManager
 onready var tween = $Tween
 export var starting_color: String = "grays"
-export var apply_color : bool
+export var apply_color: bool
 
 export var palettes: Dictionary = {
 	grays = [
@@ -50,7 +50,8 @@ export var palettes: Dictionary = {
 
 
 func _ready():
-	Wiggle.recolor = self
+	if !Engine.editor_hint:
+		Wiggle.recolor = self
 	set_current_palette(palettes[starting_color])
 	pass
 

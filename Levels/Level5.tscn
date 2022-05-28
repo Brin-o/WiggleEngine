@@ -5,19 +5,15 @@
 [ext_resource path="res://Sprites/square_empty.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/LevelEnd.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/Camera.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Level5" type="Node2D"]
 position = Vector2( 0, -1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 133, 375 )
-rotating = true
-current = true
-script = ExtResource( 6 )
+[node name="Camera2D" parent="." instance=ExtResource( 6 )]
 
 [node name="BG" type="Sprite" parent="."]
 position = Vector2( 319, 321 )
