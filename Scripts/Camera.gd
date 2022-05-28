@@ -21,4 +21,6 @@ func _process(delta):
 		var speed_mod = Util.remap(player.velocity.length(), speed_gate, 250, 10, 100)
 		target_position = player.global_position + player.velocity.normalized() * speed_mod
 		follow_speed = follow_speed_fast
+	elif global_position.distance_to(player.global_position) > 100:
+		target_position = player.global_position
 	global_position = lerp(global_position, target_position, delta * follow_speed)

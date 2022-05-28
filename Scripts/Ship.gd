@@ -4,9 +4,14 @@ enum ShipState { Normal, Squid, Overheat }
 var ship_state = ShipState.Normal
 
 export var power_push: float = 80
+
 var steering_str_normal: float = 380
-var steering_str_overheating: float = 80
-var steering_follow_multiplier: float = 0.8
+var steering_str_squid: float = 60
+var steering_str_overheating: float = 300
+
+var steering_follow_m_normal: float = 0.8
+var steering_follow_m_squid: float = 1
+var steering_follow_m_overheating: float = 1.2
 
 var friction: float = 2
 var friction_holding: float = 0.5
@@ -48,19 +53,22 @@ func _physics_process(delta):
 	set_collision_mask_bit(1, !passing_normal)  #normal wall
 	set_collision_mask_bit(2, !passing_squid)  #squid wall
 	set_collision_mask_bit(3, !passing_oh)  #oh wall
+
 	var steering_str = steering_str_normal
+	var steering_follow_multiplier = steering_follow_m_normal
 
 	if ship_state == ShipState.Normal:
 		modulate = C_NORMAL
 		steering_str = steering_str_normal
-
+		steering_follow_multiplier = steering_follow_m_normal
 		passing_normal = true
 		passing_squid = false
 		passing_oh = false
 
 	if ship_state == ShipState.Squid:
 		modulate = C_SQUID
-		steering_str = steering_str_overheating
+		steering_str = steering_str_squid
+		steering_follow_multiplier = steering_follow_m_squid
 		passing_normal = false
 		passing_squid = true
 		passing_oh = false
