@@ -1,14 +1,12 @@
 tool
 extends Node2D
 
-
-export var selected_num : int = 0
+export var selected_num: int = 0
 var blocks
 var selected_node
 
-export (NodePath) var target_path
-
-
+export(NodePath) var target_path
+export var grid_size: int = 16
 
 
 func _enter_tree():
@@ -29,13 +27,13 @@ func _enter_tree():
 	if not InputMap.has_action("editor_scale_up"):
 		InputMap.add_action("editor_scale_up")
 	event = InputEventKey.new()
-	event.physical_scancode = KEY_I 
+	event.physical_scancode = KEY_I
 	InputMap.action_add_event("editor_scale_up", event)
 
 	if not InputMap.has_action("editor_scale_down"):
 		InputMap.add_action("editor_scale_down")
 	event = InputEventKey.new()
-	event.physical_scancode = KEY_K 
+	event.physical_scancode = KEY_K
 	InputMap.action_add_event("editor_scale_down", event)
 
 	if not InputMap.has_action("editor_scale_left"):
@@ -43,42 +41,68 @@ func _enter_tree():
 	event = InputEventKey.new()
 	event.physical_scancode = KEY_J
 	InputMap.action_add_event("editor_scale_left", event)
-	
+
 	if not InputMap.has_action("editor_scale_right"):
 		InputMap.add_action("editor_scale_right")
 	event = InputEventKey.new()
 	event.physical_scancode = KEY_L
 	InputMap.action_add_event("editor_scale_right", event)
 
+	if not InputMap.has_action("editor_shift"):
+		InputMap.add_action("editor_shift")
+	event = InputEventKey.new()
+	event.physical_scancode = KEY_SHIFT
+	InputMap.action_add_event("editor_shift", event)
+
 
 var target_rotation = 0
 var target_scale := Vector2(1, 100)
+
 
 func _process(delta):
 	if Engine.editor_hint:
 		var build_target = get_node(target_path)
 
-
 		blocks = $BuildingBlocks.get_children()
 		for n in blocks:
 			n.visible = false
-			
+
 		selected_num = wrapi(selected_num, 0, blocks.size())
 
 		selected_node = blocks[selected_num]
 		selected_node.visible = true
-		selected_node.global_position = get_global_mouse_position()
-		
+		var _pos = get_global_mouse_position()
+		_pos.x = int(_pos.x) - int(_pos.x) % grid_size
+		_pos.y = int(_pos.y) - int(_pos.y) % grid_size
+		selected_node.global_position = _pos
 
-		if Input.is_action_just_pressed("editor_cycle"): selected_num+=1
+		var shift = Input.is_action_pressed("editor_shift")
+		if Input.is_action_just_pressed("editor_cycle"):
+			selected_num += 1
 
 		#edit currently selected node
-		if Input.is_action_just_pressed("editor_rotate"): target_rotation += 15
-		if Input.is_action_just_pressed("editor_scale_up"): target_scale.y += 5
-		if Input.is_action_just_pressed("editor_scale_down"): target_scale.y -= 5
-		if Input.is_action_just_pressed("editor_scale_left"): target_scale.x -= 5
-		if Input.is_action_just_pressed("editor_scale_right"): target_scale.x += 5
-
+		if Input.is_action_just_pressed("editor_rotate"):
+			target_rotation += 15
+		if (
+			Input.is_action_just_pressed("editor_scale_up")
+			or (Input.is_action_pressed("editor_scale_up") and shift)
+		):
+			target_scale.y += 5
+		if (
+			Input.is_action_just_pressed("editor_scale_down")
+			or (Input.is_action_pressed("editor_scale_down") and shift)
+		):
+			target_scale.y -= 5
+		if (
+			Input.is_action_just_pressed("editor_scale_left")
+			or (Input.is_action_pressed("editor_scale_left") and shift)
+		):
+			target_scale.x -= 5
+		if (
+			Input.is_action_just_pressed("editor_scale_right")
+			or (Input.is_action_pressed("editor_scale_right") and shift)
+		):
+			target_scale.x += 5
 
 		selected_node.rotation_degrees = target_rotation
 		selected_node.scale = target_scale
@@ -96,10 +120,10 @@ func _process(delta):
 		pass
 		#selected_node = get_children()[0]
 
+
 func debugtxt():
 	$Label.text += "SelNum: " + str(selected_num) + "\n"
 	$Label.text += "Selected: " + selected_node.name + "\n"
-
 
 
 func _input(event):
