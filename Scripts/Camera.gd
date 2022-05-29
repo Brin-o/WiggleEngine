@@ -17,22 +17,31 @@ var angle_shake: float
 var angle_turn: float
 var angle_turn_target: float
 var angle_offset: float = 2
+var angle_offset_slider = 1.5
+
+var distance_gate = 50
 
 
 func _ready():
 	CAT.camera = self
-	angle_offset = rotation_degrees
+	#target_position = position
+	angle_offset = rand_range(-angle_offset_slider, angle_offset_slider)
 
 
 func _process(delta):
 	player = Util.find_player(false)
+	if player.speed > 0:
+		zoom = lerp(zoom, Vector2.ONE, delta * 16)
+
 	var follow_speed = follow_speed_static
+
 	if player.velocity.length() > speed_gate:
 		var speed_mod = Util.remap(player.velocity.length(), speed_gate, 250, 10, 100)
 		target_position = player.global_position + player.velocity.normalized() * speed_mod
 		follow_speed = follow_speed_fast
-	elif global_position.distance_to(player.global_position) > 100:
-		target_position = player.global_position
+
+	elif global_position.distance_to(player.global_position) > distance_gate and player.speed > 0:
+		target_position = player.global_position + player.velocity.normalized() * 50
 	global_position = lerp(global_position, target_position, delta * follow_speed)
 
 	#shake code

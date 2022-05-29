@@ -1,17 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/line_double.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/wall_arrow.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/NormalWall.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/WallArrow.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.00013, 0.5 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 0.5 )
+
 [node name="NormalWall" type="StaticBody2D" groups=["wall"]]
 modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
 position = Vector2( 185, 200 )
-rotation = -1.57079
+rotation = -0.589921
 scale = Vector2( 1, 80 )
+z_index = -1
 collision_layer = 2
 collision_mask = 0
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -20,3 +28,40 @@ texture = ExtResource( 1 )
 visible = false
 position = Vector2( -0.00012207, -0.5 )
 shape = SubResource( 1 )
+
+[node name="Arrows" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+scale = Vector2( 1, 0.0125 )
+flip_v = true
+script = ExtResource( 4 )
+
+[node name="WallArrow" type="Sprite" parent="Arrows"]
+texture = ExtResource( 2 )
+offset = Vector2( 0, 24 )
+
+[node name="WallArrow2" type="Sprite" parent="Arrows"]
+position = Vector2( 0, 20 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, 24 )
+
+[node name="WallArrow3" type="Sprite" parent="Arrows"]
+position = Vector2( 0, 40 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, 24 )
+
+[node name="PlusTrigger" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlusTrigger"]
+position = Vector2( 4.99976, -0.5 )
+shape = SubResource( 2 )
+
+[node name="MinusTrigger" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinusTrigger"]
+position = Vector2( -5.00026, -0.5 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="PlusTrigger" to="." method="_on_PlusTrigger_body_entered"]
+[connection signal="body_entered" from="MinusTrigger" to="." method="_on_MinusTrigger_body_entered"]

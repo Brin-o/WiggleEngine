@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Scenes/PlayerSFX.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayerSFX.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Ship.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/ship.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/ship_aero.png" type="Texture" id=4]
@@ -8,17 +8,20 @@
 [ext_resource path="res://Sounds/SFX/engine.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/SFX_Boost.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sounds/SFX/crash.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Scripts/PlayerVFX.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/VFX/VFX_CrashStars.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/VFX/VFX_CrashDust.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "aero",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "aero",
 "speed": 5.0
 } ]
 
@@ -95,15 +98,37 @@ radial_accel = 10.0
 radial_accel_random = 0.41
 scale_amount_curve = SubResource( 5 )
 
+[node name="NomralVFX" type="CPUParticles2D" parent="."]
+self_modulate = Color( 0.25098, 0.25098, 0.25098, 1 )
+position = Vector2( -5, -1 )
+amount = 12
+local_coords = false
+texture = ExtResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+direction = Vector2( 2, 0 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.46
+angular_velocity_random = 1.0
+radial_accel = 10.0
+radial_accel_random = 0.41
+scale_amount = 0.8
+scale_amount_curve = SubResource( 5 )
+
 [node name="SquidBoost" type="Area2D" parent="."]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SquidBoost"]
 shape = SubResource( 8 )
 
+[node name="NormalBoost" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NormalBoost"]
+shape = SubResource( 8 )
+
 [node name="SFX" type="Node" parent="."]
 script = ExtResource( 1 )
-boostSFX = ExtResource( 7 )
 
 [node name="Boost" parent="SFX" instance=ExtResource( 7 )]
 volume_db = -28.0
@@ -117,8 +142,15 @@ bus = "Engine"
 
 [node name="Crash" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 8 )
-bus = "SFX"
+bus = "SFX_Low"
+
+[node name="VFX" type="Node" parent="."]
+script = ExtResource( 9 )
+crashParticleStars = ExtResource( 10 )
+crashParticleDust = ExtResource( 11 )
 
 [connection signal="boost_fired" from="." to="SFX" method="_on_Player_boost_fired"]
 [connection signal="crashed" from="." to="SFX" method="_on_Player_crashed"]
+[connection signal="crashed" from="." to="VFX" method="_on_Player_crashed"]
 [connection signal="body_entered" from="SquidBoost" to="." method="_on_SquidBoost_body_entered"]
+[connection signal="body_entered" from="NormalBoost" to="." method="_on_NormalBoost_body_entered"]

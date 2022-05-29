@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/castel_in_the_sky.ogg-94298c122bdfb424c9cefa9c151cc98f.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/castel_in_the_sky.ogg"
+dest_files=[ "res://.import/castel_in_the_sky.ogg-94298c122bdfb424c9cefa9c151cc98f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

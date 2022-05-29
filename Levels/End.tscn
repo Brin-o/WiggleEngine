@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Restart.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/WallTools.gd" type="Script" id=6]
+[ext_resource path="res://Toy.tres" type="Theme" id=7]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=11]
+
+[node name="LevelEnd" type="Node2D"]
+position = Vector2( 0, -1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( 312, 697 )
+
+[node name="Label" type="Label" parent="Camera2D"]
+margin_left = -64.0
+margin_top = -80.0
+margin_right = 64.0
+margin_bottom = 32.0
+theme = ExtResource( 7 )
+text = "thank you for playing VOZI
+
+a game by:
+brin
+
+soundtrack thanks to:
+ockeroid
+orangeKeyboard
+Waterflame
+
+r - to replay"
+align = 1
+script = ExtResource( 2 )
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+position = Vector2( -90, -56 )
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2( 70, 221 )
+
+[node name="NormalWall" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 1034, 180 )
+rotation = 6.28319
+scale = Vector2( 9, 28 )
+
+[node name="NormalWall2" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 1034, 180 )
+rotation = 6.28319
+scale = Vector2( 9, 28 )
+
+[node name="NormalWall3" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 1034, 180 )
+rotation = 6.28319
+scale = Vector2( 9, 28 )
+
+[node name="SquidWall" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 1034, 180 )
+rotation = 6.28319
+scale = Vector2( 11, 30 )
+script = ExtResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 320, 721 )
+
+[node name="TOOL_BUILD" parent="." instance=ExtResource( 5 )]
+position = Vector2( 656, -535 )
+level_name = "End"
+target_path = NodePath("../Level")
+grid_size = 4
+target_scale = Vector2( 13, 42 )
+
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="0"]
+position = Vector2( -300, -300 )
+
+[node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 13, 42 )
+
+[node name="Wall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 9, 30 )
+
+[node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 11, 30 )
+
+[node name="Tooltip" parent="TOOL_BUILD" index="1"]
+position = Vector2( -189.118, 1185.73 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 11 )]
+position = Vector2( 880, 440 )
+
+[editable path="TOOL_BUILD"]

@@ -28,6 +28,7 @@ func _ready():
 		Wiggle.viewport = $"../ViewportContainer/Viewport"
 		Wiggle.interface = $"../Interface"
 		Wiggle.shaders = $"../Shaders"
+		Wiggle.recolor = $"../Shaders/Recolor"
 		queue_free()
 
 

@@ -12,7 +12,7 @@ export var power_push: float = 100
 export var power_wall: float = 120
 var speed: float = 0
 
-var steering_str_normal: float = 380
+var steering_str_normal: float = 400
 var steering_str_squid: float = 60
 var steering_str_overheating: float = 300
 
@@ -44,7 +44,8 @@ var passing_oh = false
 
 func _ready():
 	CAT.player = self
-	CAT.camera.target_position = self.position
+	CAT.camera.global_position = self.global_position
+	CAT.camera.target_position = self.global_position
 
 
 func _process(delta):
@@ -85,6 +86,7 @@ func _physics_process(delta):
 	if speed < 1 or !accepting_input:
 		steering_input = 0
 	rotation_degrees += steering_input * steering_str * delta
+	#rotation_degrees -= int(rotation_degrees) % 5
 	velocity = velocity.rotated(
 		steering_input * deg2rad(steering_str * steering_follow_multiplier) * delta
 	)
@@ -131,7 +133,7 @@ func _physics_process(delta):
 			reset_player()
 
 
-var squid_saftey = 0.12
+var squid_saftey = 0.06
 var squid_saftey_t = 0.0
 
 onready var start_pos = global_position
@@ -142,7 +144,9 @@ func reset_player():
 	global_position = start_pos
 	global_rotation = start_rot
 	velocity = Vector2.ZERO
-	CAT.camera.angle_offset = rand_range(-2, 2)
+	CAT.camera.angle_offset = rand_range(
+		-CAT.camera.angle_offset_slider, CAT.camera.angle_offset_slider
+	)
 
 
 var b_shake_p = 0
@@ -154,7 +158,7 @@ func boost(amount, _shake_p = 6, _shake_r = 2):
 	b_shake_r += _shake_r
 	CAT.camera.shake_p = b_shake_p
 	CAT.camera.shake_r = b_shake_r
-	velocity += Vector2.RIGHT.rotated(rotation) * power_push
+	velocity += Vector2.RIGHT.rotated(rotation) * amount
 	$BoostVFX.emitting = true
 
 
@@ -170,3 +174,15 @@ func _on_SquidBoost_body_entered(body: Node):
 	if ship_state == ShipState.Squid and body.is_in_group("wall"):
 		emit_signal("boost_fired", "wall")
 		boost(power_wall, 3, 1)
+
+
+var wall_rotaiton: float = 40
+
+
+func _on_NormalBoost_body_entered(body: Node):
+	if ship_state == ShipState.Normal and body.is_in_group("wall"):
+		emit_signal("boost_fired", "wall")
+
+		rotation_degrees += wall_rotaiton * body.mod
+		velocity = velocity.length() * Vector2.RIGHT.rotated(deg2rad(rotation_degrees))
+		boost(50, 1, 0.5)

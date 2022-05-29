@@ -50,8 +50,6 @@ export var palettes: Dictionary = {
 
 
 func _ready():
-	if !Engine.editor_hint:
-		Wiggle.recolor = self
 	set_current_palette(palettes[starting_color])
 	pass
 
@@ -78,6 +76,6 @@ func _process(delta):
 			set_current_palette(palettes[starting_color], 0)
 			apply_color = false
 
-	#if Input.is_action_just_pressed("ui_accept"):
-	#	var p = palettes[palettes.keys()[randi() % palettes.size()]]
-	#	set_current_palette(p, 0.7)
+	# if Input.is_action_just_pressed("ui_accept"):
+	# 	var p = palettes[palettes.keys()[randi() % palettes.size()]]
+	# 	set_current_palette(p, 0.7)

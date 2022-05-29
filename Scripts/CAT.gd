@@ -39,18 +39,32 @@ var msg
 var player
 var camera
 var music
+var background
 
 var current_level: int = 0
 
 var levels: Array = [
-	"LineAlone",
-	"TwistTurn",
-	"SnailOne",
-	"WideNarrowEnd",
-	"ZigZag_One",
-	"LineSquid",
-	"BasicSquid",
-	"CheckSquid",
-	"TightSquid",
-	"RiderSquid"
+	# Turn Levels
+	"SoloLine",
+	"SoloTwist",
+	"SoloDoubleTwist",
+	#Squid Levels
+	"SquidLine",
+	"SquidBasics",
+	"SquidCheck",
+	"SquidTight",
+	#"RiderSquid",
+	#Turn Levels
+	"TurnLine",
+	"TurnFlurry",
+	"TurnSwapper",
+	#Movable levels
+	"MovingLine",
+	"MovingBasics",
+	"MovingPressure",
+	"End"
+	#end level (v hard)
+	#"SquidRider"
+	#Moveable levels
+	#ComboLevels
 ]

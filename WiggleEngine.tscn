@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=1]
 [ext_resource path="res://Resaources/Squareskew.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Shaders/Recolour.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/WiggleSettings.gd" type="Script" id=4]
-[ext_resource path="res://Levels/LineAlone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Start.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/MusicPlayer.gd" type="Script" id=6]
 [ext_resource path="res://Sounds/Music/the_thunder_cycle.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scripts/Debug.gd" type="Script" id=8]
 [ext_resource path="res://Sounds/Music/3AM_he_cool.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Toy.tres" type="Theme" id=10]
+[ext_resource path="res://Scripts/UI/LevelDisplay.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/UI.gd" type="Script" id=12]
+[ext_resource path="res://Sounds/Music/castel_in_the_sky.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/Music/feeling_better.ogg" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
@@ -22,7 +27,7 @@ height = 240
 zoom = 2
 project_name = "VOZI"
 include_date = false
-bg_color = Color( 0.729412, 0.537255, 0.537255, 1 )
+bg_color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -35,10 +40,11 @@ size = Vector2( 240, 240 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="LevelLineSquid" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
+[node name="LevelEnd" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 0
+script = ExtResource( 12 )
 
 [node name="Message" type="Node2D" parent="Interface"]
 script = ExtResource( 1 )
@@ -61,9 +67,51 @@ autowrap = true
 
 [node name="Tween" type="Tween" parent="Interface/Message"]
 
+[node name="LevelProg" type="Node2D" parent="Interface"]
+position = Vector2( 180, 8 )
+script = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Interface/LevelProg"]
+self_modulate = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+margin_left = -16.0
+margin_right = 52.0
+margin_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 10 )
+text = "complted 0/16"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Interface/LevelProg/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Timer" type="Node2D" parent="Interface"]
+visible = false
+position = Vector2( 208, 40 )
+
+[node name="Label" type="Label" parent="Interface/Timer"]
+self_modulate = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+margin_left = -24.0
+margin_top = -8.0
+margin_right = 24.0
+margin_bottom = 8.0
+theme = ExtResource( 10 )
+text = "69:69:69"
+align = 1
+
+[node name="ColorRect" type="ColorRect" parent="Interface/Timer/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="Shaders" type="CanvasLayer" parent="."]
 
-[node name="ColorRemap" parent="Shaders" instance=ExtResource( 3 )]
+[node name="Recolor" parent="Shaders" instance=ExtResource( 3 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -16.0
@@ -82,18 +130,20 @@ palettes = {
 layer = 3
 
 [node name="Debug" type="Label" parent="CanvasLayer"]
+visible = false
 margin_right = 105.0
 margin_bottom = 91.0
 text = "test"
 script = ExtResource( 8 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-autoplay = true
+stream = ExtResource( 9 )
 bus = "Music"
 script = ExtResource( 6 )
 thunder = ExtResource( 7 )
 threeam = ExtResource( 9 )
+castle = ExtResource( 13 )
+feeling = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="MusicPlayer"]
 

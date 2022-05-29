@@ -6,5 +6,3 @@
 stream = ExtResource( 1 )
 autoplay = true
 bus = "SFX"
-
-[connection signal="finished" from="." to="." method="_on_Boost_finished"]

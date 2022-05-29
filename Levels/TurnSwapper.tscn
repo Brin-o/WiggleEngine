@@ -1,0 +1,311 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=8]
+
+[node name="LevelTurnSwapper" type="Node2D"]
+position = Vector2( 0, -1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Background" parent="." instance=ExtResource( 7 )]
+position = Vector2( -90, -56 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( 240, 761 )
+rotation = 6.28319
+z_index = 1
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2( 70, 221 )
+
+[node name="Wall" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 118, 412 )
+rotation = 6.28319
+scale = Vector2( 1, 74 )
+
+[node name="Wall2" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 254, 412 )
+rotation = 6.28319
+scale = Vector2( 1, 86 )
+
+[node name="Wall5" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 118, 340 )
+rotation = 0.785398
+scale = Vector2( 1, 62 )
+
+[node name="NormalWall2" parent="Level" instance=ExtResource( 4 )]
+position = Vector2( 162, 296 )
+rotation = 1.5708
+scale = Vector2( 1, 90 )
+
+[node name="Wall3" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 254, 328 )
+rotation = 5.49779
+scale = Vector2( 1, 8 )
+
+[node name="Wall4" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 250, 324 )
+rotation = 6.28319
+scale = Vector2( 1, 24 )
+
+[node name="Wall6" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 250, 300 )
+rotation = 0.785398
+scale = Vector2( 1, 58 )
+
+[node name="Wall8" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 162, 296 )
+rotation = 6.28319
+scale = Vector2( 1, 28 )
+
+[node name="Wall9" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 162, 272 )
+rotation = 0.785398
+scale = Vector2( 1, 20 )
+
+[node name="Wall10" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 174, 260 )
+rotation = 6.28319
+scale = Vector2( 1, 20 )
+
+[node name="Wall11" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 174, 244 )
+rotation = 5.49779
+scale = Vector2( 1, 20 )
+
+[node name="Wall12" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 162, 232 )
+rotation = 6.28319
+scale = Vector2( 1, 12 )
+
+[node name="Wall13" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 162, 224 )
+rotation = 0.785398
+scale = Vector2( 1, 12 )
+
+[node name="Wall14" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 170, 216 )
+rotation = 0.785398
+scale = Vector2( 1, 34 )
+
+[node name="Wall15" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 190, 196 )
+rotation = 1.5708
+scale = Vector2( 1, 38 )
+
+[node name="Wall16" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 226, 196 )
+rotation = 2.35619
+scale = Vector2( 1, 12 )
+
+[node name="Wall7" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 290, 260 )
+rotation = 1.5708
+scale = Vector2( 1, 48 )
+
+[node name="Wall17" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 234, 204 )
+rotation = 1.5708
+scale = Vector2( 1, 48 )
+
+[node name="Wall18" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 278, 204 )
+rotation = 0.785398
+scale = Vector2( 1, 48 )
+
+[node name="SquidWall2" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 270, 204 )
+rotation = 3.14159
+scale = Vector2( 1, 78 )
+
+[node name="SquidWall3" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 118, 352 )
+rotation = 1.5708
+scale = Vector2( 1, 136 )
+
+[node name="Wall19" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 334, 260 )
+rotation = 2.35619
+scale = Vector2( 1, 46 )
+
+[node name="Wall20" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 366, 292 )
+rotation = 1.5708
+scale = Vector2( 1, 46 )
+
+[node name="Wall21" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 410, 292 )
+rotation = 0.785398
+scale = Vector2( 1, 46 )
+
+[node name="Wall22" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 442, 260 )
+rotation = 6.28319
+scale = Vector2( 1, 102 )
+
+[node name="Wall23" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 310, 172 )
+rotation = 1.5708
+scale = Vector2( 1, 26 )
+
+[node name="Wall24" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 334, 172 )
+rotation = 0.785398
+scale = Vector2( 1, 20 )
+
+[node name="Wall25" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 346, 160 )
+rotation = 6.28319
+scale = Vector2( 1, 56 )
+
+[node name="NormalWall" parent="Level" instance=ExtResource( 4 )]
+position = Vector2( 438, 160 )
+rotation = 4.71239
+scale = Vector2( 1, 98 )
+
+[node name="Wall26" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 442, 160 )
+rotation = 6.28319
+scale = Vector2( 1, 98 )
+
+[node name="Wall27" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 346, 160 )
+rotation = 6.28319
+scale = Vector2( 1, 98 )
+
+[node name="Wall28" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 346, 64 )
+rotation = 0.785398
+scale = Vector2( 1, 70 )
+
+[node name="Wall29" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 442, 64 )
+rotation = 5.49779
+scale = Vector2( 1, 70 )
+
+[node name="Wall30" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 118, 408 )
+rotation = 2.35619
+scale = Vector2( 1, 44 )
+
+[node name="Wall31" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 150, 440 )
+rotation = 3.14159
+scale = Vector2( 1, 38 )
+
+[node name="Wall32" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 150, 480 )
+rotation = 3.92699
+scale = Vector2( 1, 38 )
+
+[node name="Wall33" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 122, 504 )
+rotation = 3.14159
+scale = Vector2( 1, 38 )
+
+[node name="NormalWall3" parent="Level" instance=ExtResource( 4 )]
+position = Vector2( 206, 536 )
+rotation = 5.49779
+
+[node name="Wall34" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 194, 544 )
+rotation = 0.785398
+scale = Vector2( 1, 82 )
+
+[node name="Wall35" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 254, 488 )
+rotation = 6.28319
+scale = Vector2( 1, 82 )
+
+[node name="Wall36" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 242, 496 )
+rotation = 0.785398
+scale = Vector2( 1, 24 )
+
+[node name="Wall37" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 122, 532 )
+rotation = 3.14159
+scale = Vector2( 1, 14 )
+
+[node name="Wall38" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 122, 544 )
+rotation = 3.14159
+scale = Vector2( 1, 28 )
+
+[node name="Wall41" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 194, 576 )
+rotation = 6.28319
+scale = Vector2( 1, 36 )
+
+[node name="Wall39" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 122, 568 )
+rotation = 3.14159
+scale = Vector2( 1, 36 )
+
+[node name="Wall40" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 194, 604 )
+rotation = 6.28319
+scale = Vector2( 1, 36 )
+
+[node name="Wall42" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 122, 600 )
+rotation = 2.35619
+scale = Vector2( 1, 46 )
+
+[node name="Wall43" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 194, 600 )
+rotation = 3.92699
+scale = Vector2( 1, 46 )
+
+[node name="Wall44" parent="Level" instance=ExtResource( 2 )]
+position = Vector2( 162, 632 )
+rotation = 4.71239
+scale = Vector2( 1, 10 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 230, 825 )
+
+[node name="TOOL_BUILD" parent="." instance=ExtResource( 5 )]
+position = Vector2( 630, -551 )
+level_name = "TurnSwapper"
+target_path = NodePath("../Level")
+grid_size = 4
+target_rotation = 270
+target_scale = Vector2( 1, 10 )
+
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="0"]
+position = Vector2( -300, -300 )
+
+[node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 4.71239
+scale = Vector2( 1, 10 )
+
+[node name="Wall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 4.71239
+scale = Vector2( 1, 10 )
+
+[node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 3.92699
+scale = Vector2( 1, 78 )
+
+[node name="Tooltip" parent="TOOL_BUILD" index="1"]
+position = Vector2( 552.997, 919.675 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 1 )]
+position = Vector2( 464, 305 )
+
+[editable path="TOOL_BUILD"]

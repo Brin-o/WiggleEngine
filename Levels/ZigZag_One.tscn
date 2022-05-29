@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=9]
 
@@ -16,15 +16,6 @@ position = Vector2( 0, -1 )
 [node name="Camera2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 545 )
 z_index = 1
-
-[node name="BG" type="Sprite" parent="."]
-position = Vector2( 319, 321 )
-texture = ExtResource( 7 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 640, 640 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Level" type="Node2D" parent="."]
 position = Vector2( 70, 220 )
@@ -163,6 +154,9 @@ visible = false
 position = Vector2( 0, 0 )
 rotation = 60.4757
 scale = Vector2( 5, 88 )
+
+[node name="Background" parent="." instance=ExtResource( 7 )]
+position = Vector2( -28, 32 )
 
 [editable path="LevelEnd"]
 [editable path="TOOL_BUILD"]

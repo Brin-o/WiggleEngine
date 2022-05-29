@@ -11,6 +11,7 @@ modulate = Color( 0.509804, 0.509804, 0.509804, 1 )
 position = Vector2( 185, 200 )
 rotation = -1.57079
 scale = Vector2( 1, 80 )
+z_index = -1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )

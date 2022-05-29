@@ -180,10 +180,11 @@ func _process(delta):
 			b.global_position = selected_node.global_position
 			b.rotation = selected_node.rotation
 			b.rotation_degrees = selected_node.rotation_degrees
-
+			if target_rotation == 0:
+				b.rotation_degrees = 360
+			if b.rotation_degrees == -90:
+				print("WE GOT A -90 SIR!")
 			b.set_owner(get_tree().edited_scene_root)
-			if target_rotation == 0 or target_rotation == 360:
-				b.rotation_degrees = 0
 
 		if Input.is_action_just_pressed("editor_s") and Input.is_action_pressed("editor_ctrl"):
 			save_level()

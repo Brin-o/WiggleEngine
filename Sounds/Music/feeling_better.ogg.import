@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/feeling_better.ogg-c8788a24569b2781ddd8993157aaf58f.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/feeling_better.ogg"
+dest_files=[ "res://.import/feeling_better.ogg-c8788a24569b2781ddd8993157aaf58f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=6]
@@ -14,15 +14,6 @@
 position = Vector2( 0, -1 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 8 )]
-
-[node name="BG" type="Sprite" parent="."]
-position = Vector2( 319, 321 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 640, 640 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Level" type="Node2D" parent="."]
 position = Vector2( 70, 220 )
@@ -142,6 +133,9 @@ visible = false
 position = Vector2( 0, 0 )
 rotation = 37.6991
 scale = Vector2( 1, 120 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1, 224 )
 
 [editable path="TOOL_BUILD"]
 [editable path="TOOL_BUILD/BuildingBlocks/OverheatWall"]
