@@ -17,6 +17,13 @@ export var grid_size: int = 16
 func _enter_tree():
 	var event
 	# setup event keys here
+
+	if not InputMap.has_action("editor_switch"):
+		InputMap.add_action("editor_switch")
+	event = InputEventKey.new()
+	event.physical_scancode = KEY_P
+	InputMap.action_add_event("editor_switch", event)
+
 	if not InputMap.has_action("editor_cycle"):
 		InputMap.add_action("editor_cycle")
 	event = InputEventKey.new()
@@ -78,8 +85,8 @@ func _enter_tree():
 	InputMap.action_add_event("editor_s", event)
 
 
-var target_rotation = 0
-var target_scale := Vector2(1, 80)
+export var target_rotation = 0
+export var target_scale := Vector2(1, 80)
 
 
 func _process(delta):
@@ -88,13 +95,15 @@ func _process(delta):
 
 	if Engine.editor_hint:
 		var build_target = get_node(target_path)
+		$Tooltip/Label.text = ""
 
 		blocks = $BuildingBlocks.get_children()
 		for n in blocks:
 			n.visible = false
 			n.position = Vector2.ZERO
 			n.get_node("CollisionShape2D").disabled = true
-
+		if Input.is_action_just_pressed("editor_switch"):
+			editingActive = !editingActive
 		if not editingActive:
 			return
 
@@ -103,6 +112,7 @@ func _process(delta):
 		selected_node = blocks[selected_num]
 		selected_node.visible = true
 		var _pos = get_global_mouse_position()
+		$Tooltip.global_position = _pos
 		_pos.x = int(_pos.x) - int(_pos.x) % grid_size
 		_pos.y = int(_pos.y) - int(_pos.y) % grid_size
 		selected_node.global_position = _pos
@@ -119,6 +129,9 @@ func _process(delta):
 			if Input.is_action_pressed("editor_alt"):
 				val = 30
 			target_rotation += val
+			if target_rotation == 0:
+				target_rotation = 360
+			target_rotation = wrapi(target_rotation, 0, 360)
 		if (
 			Input.is_action_just_pressed("editor_scale_up")
 			or (Input.is_action_pressed("editor_scale_up") and shift)
@@ -157,6 +170,7 @@ func _process(delta):
 
 		selected_node.rotation_degrees = target_rotation
 		selected_node.scale = target_scale
+		$Tooltip/Label.text = selected_node.name + "\n" + str(target_rotation) + " deg"
 
 		#place node
 		if Input.is_action_just_pressed("ui_select"):
@@ -164,8 +178,12 @@ func _process(delta):
 			b.get_node("CollisionShape2D").disabled = false
 			build_target.add_child(b)
 			b.global_position = selected_node.global_position
-			b.global_rotation = selected_node.global_rotation
+			b.rotation = selected_node.rotation
+			b.rotation_degrees = selected_node.rotation_degrees
+
 			b.set_owner(get_tree().edited_scene_root)
+			if target_rotation == 0 or target_rotation == 360:
+				b.rotation_degrees = 0
 
 		if Input.is_action_just_pressed("editor_s") and Input.is_action_pressed("editor_ctrl"):
 			save_level()
@@ -201,8 +219,3 @@ func save_level():
 func debugtxt():
 	$Label.text += "SelNum: " + str(selected_num) + "\n"
 	$Label.text += "Selected: " + selected_node.name + "\n"
-
-
-func _input(event):
-	if event is InputEventMouseButton:
-		print(Input.is_action_just_pressed("ui_editor_next"))

@@ -1,9 +1,15 @@
+class_name Ship
 extends KinematicBody2D
+
+signal boost_fired(source)
+signal crashed
 
 enum ShipState { Normal, Squid, Overheat }
 var ship_state = ShipState.Normal
 
+var accepting_input: bool = true
 export var power_push: float = 100
+export var power_wall: float = 120
 var speed: float = 0
 
 var steering_str_normal: float = 380
@@ -38,12 +44,13 @@ var passing_oh = false
 
 func _ready():
 	CAT.player = self
-	player_copy = PackedScene.new()
-	player_copy.pack(self)
 	CAT.camera.target_position = self.position
 
 
 func _process(delta):
+	b_shake_p = lerp(b_shake_p, 0, delta * 6)
+	b_shake_r = lerp(b_shake_r, 0, delta * 6)
+
 	speed = velocity.length()
 	animations()
 	if Input.is_action_just_pressed("r"):
@@ -75,6 +82,8 @@ func _physics_process(delta):
 		passing_oh = false
 
 	steering_input = Util.get_input_axis().x
+	if speed < 1 or !accepting_input:
+		steering_input = 0
 	rotation_degrees += steering_input * steering_str * delta
 	velocity = velocity.rotated(
 		steering_input * deg2rad(steering_str * steering_follow_multiplier) * delta
@@ -95,9 +104,10 @@ func _physics_process(delta):
 		velocity += -velocity.normalized() * f
 
 	#movement option
-	if ship_state == ShipState.Normal or ship_state == ShipState.Squid:
+	if (ship_state == ShipState.Normal or ship_state == ShipState.Squid) and accepting_input:
 		if Input.is_action_just_pressed("ui_accept"):
-			boost()
+			boost(power_push)
+			emit_signal("boost_fired", "player")
 		if Input.is_action_pressed("ui_select"):
 			ship_state = ShipState.Squid
 		if Input.is_action_just_released("ui_select"):
@@ -117,22 +127,33 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.collider.is_in_group("wall"):
 			#print("Collision with " + collision.collider.name + " !")
+			emit_signal("crashed")
 			reset_player()
 
 
 var squid_saftey = 0.12
 var squid_saftey_t = 0.0
 
+onready var start_pos = global_position
+onready var start_rot = global_rotation
+
 
 func reset_player():
-	queue_free()
-	Wiggle.get_current_scene_node().add_child(player_copy.instance())
+	global_position = start_pos
+	global_rotation = start_rot
+	velocity = Vector2.ZERO
 	CAT.camera.angle_offset = rand_range(-2, 2)
 
 
-func boost():
-	CAT.camera.shake_p = 6
-	CAT.camera.shake_r = 2
+var b_shake_p = 0
+var b_shake_r = 0
+
+
+func boost(amount, _shake_p = 6, _shake_r = 2):
+	b_shake_p += _shake_p
+	b_shake_r += _shake_r
+	CAT.camera.shake_p = b_shake_p
+	CAT.camera.shake_r = b_shake_r
 	velocity += Vector2.RIGHT.rotated(rotation) * power_push
 	$BoostVFX.emitting = true
 
@@ -145,6 +166,7 @@ func animations():
 		$LowFirctionVFX.emitting = true
 
 
-func _on_SquidBooster_body_entered(body: Node):
-	if ship_state == ShipState.Squid:
-		boost()
+func _on_SquidBoost_body_entered(body: Node):
+	if ship_state == ShipState.Squid and body.is_in_group("wall"):
+		emit_signal("boost_fired", "wall")
+		boost(power_wall, 3, 1)

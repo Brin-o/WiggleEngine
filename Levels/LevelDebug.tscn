@@ -34,22 +34,22 @@ target_path = NodePath("../Level")
 
 [node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 1072, 96 )
+position = Vector2( 0, 0 )
 rotation = 0.0
 
 [node name="OverheatWall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 9 )]
 visible = false
-position = Vector2( 128, 128 )
+position = Vector2( 0, 0 )
 rotation = 1.5708
 
 [node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 8 )]
 visible = false
-position = Vector2( -96, -144 )
+position = Vector2( 0, 0 )
 rotation = 1.5708
 
 [node name="Wall" parent="TOOL_BUILD/BuildingBlocks" index="3" instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 32, 160 )
+position = Vector2( 0, 0 )
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 

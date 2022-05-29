@@ -5,12 +5,19 @@
 [node name="TOOL_BUILD" type="Node2D"]
 position = Vector2( 0, 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 level_name = "WallDebug"
 target_path = NodePath("../LVL")
 
-[node name="Label" type="Label" parent="."]
-margin_top = 100.0
-margin_right = 283.0
-margin_bottom = 153.0
-
 [node name="BuildingBlocks" type="Node2D" parent="."]
+
+[node name="Tooltip" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Tooltip"]
+margin_left = -144.0
+margin_right = 139.0
+margin_bottom = 53.0
+align = 1
+valign = 1

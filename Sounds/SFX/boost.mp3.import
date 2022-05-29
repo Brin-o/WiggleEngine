@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/boost.mp3-faede3a0cc22b9e72b10e6fe149bf9fc.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/boost.mp3"
+dest_files=[ "res://.import/boost.mp3-faede3a0cc22b9e72b10e6fe149bf9fc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
+[ext_resource path="res://Scenes/PlayerSFX.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Ship.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/ship.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/ship_aero.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/point.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/SFX/engine.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/SFX_Boost.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sounds/SFX/crash.ogg" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -21,15 +25,15 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=7]
 radius = 2.75
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 3.25, 1.75 )
-
 [sub_resource type="Curve" id=6]
 max_value = 3.0
 _data = [ Vector2( 0, 0.463636 ), 0.0, 15.7636, 0, 0, Vector2( 0.0657439, 1.28182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.73177, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0.669318 ), 0.0, -0.20606, 0, 0, Vector2( 1, 0 ), -0.669318, 0.0, 1, 0 ]
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 4.0
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 rotation = -1.5708
@@ -48,14 +52,6 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
-
-[node name="SquidBooster" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SquidBooster"]
-shape = SubResource( 4 )
 
 [node name="BoostVFX" type="CPUParticles2D" parent="."]
 position = Vector2( -4, 0 )
@@ -99,4 +95,30 @@ radial_accel = 10.0
 radial_accel_random = 0.41
 scale_amount_curve = SubResource( 5 )
 
-[connection signal="body_entered" from="SquidBooster" to="." method="_on_SquidBooster_body_entered"]
+[node name="SquidBoost" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SquidBoost"]
+shape = SubResource( 8 )
+
+[node name="SFX" type="Node" parent="."]
+script = ExtResource( 1 )
+boostSFX = ExtResource( 7 )
+
+[node name="Boost" parent="SFX" instance=ExtResource( 7 )]
+volume_db = -28.0
+autoplay = false
+
+[node name="Engine" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 6 )
+pitch_scale = 0.2
+autoplay = true
+bus = "Engine"
+
+[node name="Crash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[connection signal="boost_fired" from="." to="SFX" method="_on_Player_boost_fired"]
+[connection signal="crashed" from="." to="SFX" method="_on_Player_crashed"]
+[connection signal="body_entered" from="SquidBoost" to="." method="_on_SquidBoost_body_entered"]

@@ -92,14 +92,12 @@ editingActive = true
 level_name = "LineSquid"
 target_path = NodePath("../Level")
 
-[node name="BuildingBlocks" parent="TOOL_BUILD" index="1"]
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="0"]
 position = Vector2( -300, -300 )
 
 [node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 0, 0 )
+position = Vector2( -356, 892 )
 rotation = 0.0
-scale = Vector2( 9, 80 )
 
 [node name="OverheatWall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 3 )]
 visible = false
@@ -111,7 +109,8 @@ scale = Vector2( 17, 80 )
 disabled = true
 
 [node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 4 )]
-position = Vector2( -596, 1084 )
+visible = false
+position = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 65, 128 )
 
@@ -120,6 +119,13 @@ visible = false
 position = Vector2( 0, 0 )
 rotation = 11.5192
 scale = Vector2( 33, 116 )
+
+[node name="Tooltip" parent="TOOL_BUILD" index="1"]
+position = Vector2( -665.966, 597.136 )
+
+[node name="Label" parent="TOOL_BUILD/Tooltip" index="0"]
+text = "NormalWall
+0 deg"
 
 [editable path="TOOL_BUILD"]
 [editable path="TOOL_BUILD/BuildingBlocks/OverheatWall"]

@@ -1,0 +1,169 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=9]
+
+[node name="LevelZigZag_One" type="Node2D"]
+position = Vector2( 0, -1 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 545 )
+z_index = 1
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 319, 321 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 640 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2( 70, 220 )
+
+[node name="Node2D" type="Node2D" parent="Level"]
+position = Vector2( 52, 153 )
+
+[node name="Wall" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 80, 229 )
+rotation = -5.56284e-07
+
+[node name="Wall2" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 194, 229 )
+rotation = -5.56284e-07
+
+[node name="Wall4" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 194, 149 )
+rotation = 0.698133
+scale = Vector2( 1, 108 )
+
+[node name="Wall5" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 78, 149 )
+rotation = 0.698133
+scale = Vector2( 1, 126 )
+
+[node name="Wall6" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 158, 52 )
+rotation = -0.872665
+scale = Vector2( 1, 62 )
+
+[node name="Wall7" parent="Level/Node2D" instance=ExtResource( 8 )]
+position = Vector2( 266, 69 )
+rotation = -0.872665
+scale = Vector2( 1, 94 )
+
+[node name="Node2D2" type="Node2D" parent="Level"]
+position = Vector2( 54, -66 )
+
+[node name="Wall" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 112, 238 )
+rotation = -5.56284e-07
+scale = Vector2( 1, 88 )
+
+[node name="Wall2" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 194, 229 )
+rotation = -5.56284e-07
+
+[node name="Wall4" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 194, 149 )
+rotation = 0.698133
+scale = Vector2( 1, 108 )
+
+[node name="Wall5" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 112, 152 )
+rotation = 0.698133
+scale = Vector2( 1, 94 )
+
+[node name="Wall6" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 173, 83 )
+rotation = -0.872665
+scale = Vector2( 1, 94 )
+
+[node name="Wall7" parent="Level/Node2D2" instance=ExtResource( 8 )]
+position = Vector2( 266, 69 )
+rotation = -0.872665
+scale = Vector2( 1, 94 )
+
+[node name="Wall" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 154, -43 )
+rotation = 3.49691e-07
+scale = Vector2( 1, 40 )
+
+[node name="Wall2" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 250, -55 )
+rotation = 6.99382e-07
+scale = Vector2( 1, 28 )
+
+[node name="Wall3" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 150, -79 )
+rotation = 0.785397
+scale = Vector2( 1, 76 )
+
+[node name="Wall4" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 254, -79 )
+rotation = -0.785399
+scale = Vector2( 1, 76 )
+
+[node name="Wall5" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 130, 381 )
+rotation = 2.35619
+scale = Vector2( 1, 88 )
+
+[node name="Wall6" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 246, 381 )
+rotation = -2.35619
+scale = Vector2( 1, 88 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 5 )]
+position = Vector2( 280, 153 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 256, 601 )
+
+[node name="TOOL_BUILD" parent="." instance=ExtResource( 4 )]
+position = Vector2( 44, 35 )
+level_name = "ZigZag_One"
+target_path = NodePath("../Level")
+grid_size = 4
+
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="0"]
+position = Vector2( -300, -300 )
+
+[node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 82 )
+
+[node name="OverheatWall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 82 )
+
+[node name="CollisionShape2D" parent="TOOL_BUILD/BuildingBlocks/OverheatWall" index="1"]
+disabled = true
+
+[node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 23.5619
+scale = Vector2( 1, 108 )
+
+[node name="Wall" parent="TOOL_BUILD/BuildingBlocks" index="3" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 60.4757
+scale = Vector2( 5, 88 )
+
+[editable path="LevelEnd"]
+[editable path="TOOL_BUILD"]
+[editable path="TOOL_BUILD/BuildingBlocks/OverheatWall"]

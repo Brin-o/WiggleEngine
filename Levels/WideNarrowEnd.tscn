@@ -114,7 +114,7 @@ level_name = "WideNarrowEnd"
 target_path = NodePath("../Level")
 grid_size = 4
 
-[node name="BuildingBlocks" parent="TOOL_BUILD" index="1"]
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="0"]
 position = Vector2( -300, -300 )
 
 [node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 1 )]

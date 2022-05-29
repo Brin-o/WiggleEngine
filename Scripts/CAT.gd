@@ -38,7 +38,19 @@ var ui
 var msg
 var player
 var camera
+var music
 
 var current_level: int = 0
 
-var levels: Array = ["LineAlone", "OneTwo", "SnailOne", "WideNarrowEnd", "LineSquid", "Turns"]
+var levels: Array = [
+	"LineAlone",
+	"TwistTurn",
+	"SnailOne",
+	"WideNarrowEnd",
+	"ZigZag_One",
+	"LineSquid",
+	"BasicSquid",
+	"CheckSquid",
+	"TightSquid",
+	"RiderSquid"
+]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/3AM_he_cool.ogg-1c597a3a270e730d927c5d5ba7b6cfb2.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/3AM_he_cool.ogg"
+dest_files=[ "res://.import/3AM_he_cool.ogg-1c597a3a270e730d927c5d5ba7b6cfb2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

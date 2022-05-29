@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=1]
 [ext_resource path="res://Resaources/Squareskew.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Shaders/Recolour.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/WiggleSettings.gd" type="Script" id=4]
 [ext_resource path="res://Levels/LineAlone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/MusicPlayer.gd" type="Script" id=6]
+[ext_resource path="res://Sounds/Music/the_thunder_cycle.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scripts/Debug.gd" type="Script" id=8]
+[ext_resource path="res://Sounds/Music/3AM_he_cool.ogg" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
@@ -83,3 +86,15 @@ margin_right = 105.0
 margin_bottom = 91.0
 text = "test"
 script = ExtResource( 8 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+bus = "Music"
+script = ExtResource( 6 )
+thunder = ExtResource( 7 )
+threeam = ExtResource( 9 )
+
+[node name="Tween" type="Tween" parent="MusicPlayer"]
+
+[node name="Sounds" type="Node" parent="."]
