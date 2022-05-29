@@ -38,3 +38,7 @@ var ui
 var msg
 var player
 var camera
+
+var current_level: int = 0
+
+var levels: Array = ["LineAlone", "OneTwo", "SnailOne", "WideNarrowEnd", "LineSquid", "Turns"]

@@ -1,0 +1,217 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/LevelParts/OverheatWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LevelParts/LevelEnd.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Shaders/Recolour.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/bg_tiles.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/LevelParts/NormalWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/LevelParts/SquidWall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/TOOL_BUILD.tscn" type="PackedScene" id=10]
+
+[node name="LevelSnailOne" type="Node2D"]
+position = Vector2( 0, -1 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 9 )]
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 319, 321 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 640 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2( 70, 220 )
+
+[node name="Node2D" type="Node2D" parent="Level"]
+
+[node name="Wall6" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 90, 141 )
+rotation = 0.69813
+scale = Vector2( 1, 48 )
+
+[node name="Wall3" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 126, 11228 )
+rotation = 0.00015674
+scale = Vector2( 1, 3136 )
+
+[node name="Wall2" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 90, 197 )
+rotation = 2.74983e-06
+scale = Vector2( 1, 56 )
+
+[node name="Wall4" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 2, 197 )
+rotation = 2.74983e-06
+
+[node name="Wall7" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 2, 117 )
+rotation = 0.69813
+scale = Vector2( 1, 104 )
+
+[node name="Wall" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 90, 229 )
+rotation = 2.79753e-06
+
+[node name="Wall9" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 2, 221 )
+rotation = 2.79753e-06
+
+[node name="Wall10" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 2, 229 )
+rotation = 2.79753e-06
+
+[node name="Wall11" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 50, 253 )
+rotation = -1.0472
+scale = Vector2( 1, 56 )
+
+[node name="Wall12" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 42, 253 )
+rotation = 1.04719
+scale = Vector2( 1, 56 )
+
+[node name="Wall5" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 118, 105 )
+rotation = 1.5708
+scale = Vector2( 1, 56 )
+
+[node name="Wall8" parent="Level/Node2D" instance=ExtResource( 1 )]
+position = Vector2( 66, 37 )
+rotation = 1.5708
+scale = Vector2( 1, 120 )
+
+[node name="Node2D2" type="Node2D" parent="Level"]
+position = Vector2( 333, 0 )
+scale = Vector2( -1, 1 )
+
+[node name="Wall3" parent="Level/Node2D2" instance=ExtResource( 1 )]
+position = Vector2( 126, 11228 )
+rotation = 0.00015674
+scale = Vector2( 1, 3136 )
+
+[node name="Wall4" parent="Level/Node2D2" instance=ExtResource( 1 )]
+position = Vector2( 2, 197 )
+rotation = 2.74983e-06
+
+[node name="Wall7" parent="Level/Node2D2" instance=ExtResource( 1 )]
+position = Vector2( 2, 117 )
+rotation = 0.69813
+scale = Vector2( 1, 104 )
+
+[node name="Wall5" parent="Level/Node2D2" instance=ExtResource( 1 )]
+position = Vector2( 118, 105 )
+rotation = 1.5708
+scale = Vector2( 1, 56 )
+
+[node name="Wall8" parent="Level/Node2D2" instance=ExtResource( 1 )]
+position = Vector2( 66, 37 )
+rotation = 1.5708
+scale = Vector2( 1, 120 )
+
+[node name="Wall" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 330, 197 )
+rotation = -2.44346
+scale = Vector2( 1, 58 )
+
+[node name="Wall2" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 214, 105 )
+rotation = 2.44346
+scale = Vector2( 1, 74 )
+
+[node name="Wall3" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 262, 161 )
+rotation = -2.44347
+scale = Vector2( 1, 48 )
+
+[node name="Wall4" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 294, 241 )
+scale = Vector2( 1, 74 )
+
+[node name="Wall5" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 222, 241 )
+rotation = -0.698137
+scale = Vector2( 1, 52 )
+
+[node name="Wall6" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 234, 197 )
+rotation = -0.698137
+scale = Vector2( 1, 28 )
+
+[node name="Wall7" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 190, 201 )
+rotation = 0.174528
+scale = Vector2( 1, 28 )
+
+[node name="Wall8" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( 218, 177 )
+rotation = -1.39627
+scale = Vector2( 1, 28 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 3 )]
+position = Vector2( 276, 411 )
+rotation = 0.185873
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 117, 436 )
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="ColorRemap" parent="Shaders" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 23.0
+margin_top = 10.0
+margin_right = 436.0
+margin_bottom = 415.0
+starting_color = "ayy8"
+palettes = {
+"ayy8": [ Color( 0.945098, 0.94902, 0.843137, 1 ), Color( 1, 0.8, 0.552941, 1 ), Color( 1, 0.423529, 0.447059, 1 ), Color( 0.584314, 0.454902, 0.905882, 1 ), Color( 0.0156863, 0.431373, 0.45098, 1 ), Color( 0.576471, 0.717647, 0.733333, 1 ), Color( 0, 0.192157, 0.235294, 1 ), Color( 0, 0.137255, 0.164706, 1 ) ],
+"destatur": [ Color( 0.941176, 0.941176, 0.921569, 1 ), Color( 1, 1, 0.560784, 1 ), Color( 0.482353, 0.878431, 0.596078, 1 ), Color( 0.517647, 0.603922, 0.847059, 1 ), Color( 0.909804, 0.701961, 0.509804, 1 ), Color( 0.847059, 0.509804, 0.556863, 1 ), Color( 0.376471, 0.317647, 0.392157, 1 ), Color( 0.329412, 0.317647, 0.333333, 1 ) ],
+"grays": [ Color( 0.94902, 0.94902, 0.94902, 1 ), Color( 0.74902, 0.74902, 0.74902, 1 ), Color( 0.619608, 0.619608, 0.619608, 1 ), Color( 0.509804, 0.509804, 0.509804, 1 ), Color( 0.380392, 0.380392, 0.380392, 1 ), Color( 0.25098, 0.25098, 0.25098, 1 ), Color( 0.129412, 0.129412, 0.129412, 1 ), Color( 0.0117647, 0.0117647, 0.0117647, 1 ) ],
+"nyx": [ Color( 0.988235, 0.835294, 0.72549, 1 ), Color( 0.788235, 0.631373, 0.52549, 1 ), Color( 0.627451, 0.45098, 0.462745, 1 ), Color( 0.52549, 0.372549, 0.447059, 1 ), Color( 0.309804, 0.286275, 0.380392, 1 ), Color( 0.0901961, 0.227451, 0.317647, 1 ), Color( 0.00784314, 0.168627, 0.254902, 1 ), Color( 0.0196078, 0.0784314, 0.121569, 1 ) ]
+}
+
+[node name="TOOL_BUILD" parent="." instance=ExtResource( 10 )]
+level_name = "SnailOne"
+target_path = NodePath("../Level")
+grid_size = 4
+
+[node name="BuildingBlocks" parent="TOOL_BUILD" index="1"]
+position = Vector2( -300, -300 )
+
+[node name="NormalWall" parent="TOOL_BUILD/BuildingBlocks" index="0" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 5, 80 )
+
+[node name="OverheatWall" parent="TOOL_BUILD/BuildingBlocks" index="1" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 187.099
+scale = Vector2( 3, 30 )
+
+[node name="CollisionShape2D" parent="TOOL_BUILD/BuildingBlocks/OverheatWall" index="1"]
+disabled = true
+
+[node name="SquidWall" parent="TOOL_BUILD/BuildingBlocks" index="2" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 152.367
+scale = Vector2( 1, 94 )
+
+[node name="Wall" parent="TOOL_BUILD/BuildingBlocks" index="3" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 0 )
+rotation = 187.099
+scale = Vector2( 1, 28 )
+
+[editable path="TOOL_BUILD"]
+[editable path="TOOL_BUILD/BuildingBlocks/OverheatWall"]

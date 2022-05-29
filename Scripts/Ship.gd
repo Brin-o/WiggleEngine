@@ -3,7 +3,8 @@ extends KinematicBody2D
 enum ShipState { Normal, Squid, Overheat }
 var ship_state = ShipState.Normal
 
-export var power_push: float = 80
+export var power_push: float = 100
+var speed: float = 0
 
 var steering_str_normal: float = 380
 var steering_str_squid: float = 60
@@ -17,15 +18,14 @@ var friction: float = 2
 var friction_holding: float = 0.5
 var drag: float = 0.125
 var drag_holding: float = 0.035
-var drag_gate: float = 180
+var drag_gate: float = 200
 
 export var C_NORMAL: Color
 export var C_SQUID: Color
 export var C_OVERHEAT: Color
 
 var velocity: Vector2 = Vector2.ZERO
-var min_speed = 30
-var energy: float = 100
+var min_speed = 50
 
 var steering_input: float = 0
 
@@ -44,6 +44,7 @@ func _ready():
 
 
 func _process(delta):
+	speed = velocity.length()
 	animations()
 	if Input.is_action_just_pressed("r"):
 		reset_player()
@@ -115,7 +116,7 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.is_in_group("wall"):
-			print("Collision with " + collision.collider.name + " !")
+			#print("Collision with " + collision.collider.name + " !")
 			reset_player()
 
 
@@ -126,9 +127,12 @@ var squid_saftey_t = 0.0
 func reset_player():
 	queue_free()
 	Wiggle.get_current_scene_node().add_child(player_copy.instance())
+	CAT.camera.angle_offset = rand_range(-2, 2)
 
 
 func boost():
+	CAT.camera.shake_p = 6
+	CAT.camera.shake_r = 2
 	velocity += Vector2.RIGHT.rotated(rotation) * power_push
 	$BoostVFX.emitting = true
 

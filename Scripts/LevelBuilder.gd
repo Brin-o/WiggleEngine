@@ -113,11 +113,11 @@ func _process(delta):
 
 		#edit currently selected node
 		if Input.is_action_just_pressed("editor_rotate"):
-			var val = 10
+			var val = 45
 			if Input.is_action_pressed("editor_ctrl"):
 				val = 90
 			if Input.is_action_pressed("editor_alt"):
-				val = 5
+				val = 30
 			target_rotation += val
 		if (
 			Input.is_action_just_pressed("editor_scale_up")
@@ -178,8 +178,9 @@ func save_level():
 	var _name = "Level" + level_name
 
 	#disable colour shader
-	var c_shader: ColorRect = get_node("../Shaders/ColorRemap")
-	c_shader.visible = false
+	#var c_shader: ColorRect = get_node("../Shaders/ColorRemap")
+	#c_shader.visible = false
+	editingActive = false
 
 	get_parent().name = _name
 	var result = packedLevel.pack(get_parent())
@@ -189,7 +190,8 @@ func save_level():
 		var error = ResourceSaver.save(path, packedLevel)
 		print(error)
 		print("WIGGLE ENGINE: Level saved at " + path)
-		c_shader.visible = true
+		#c_shader.visible = true
+		editingActive = true
 		get_parent().name = "LevelBuilder"
 	else:
 		print("WIGGLE ENGINE: Error occured saving the scene!")

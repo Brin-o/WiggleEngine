@@ -193,7 +193,7 @@ position = Vector2( 408, 220 )
 rotation = 4.76995e-08
 
 [node name="LevelEnd" parent="." instance=ExtResource( 1 )]
-position = Vector2( 417, 101 )
+position = Vector2( 648, 259 )
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 
