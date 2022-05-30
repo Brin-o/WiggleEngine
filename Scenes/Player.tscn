@@ -149,6 +149,13 @@ script = ExtResource( 9 )
 crashParticleStars = ExtResource( 10 )
 crashParticleDust = ExtResource( 11 )
 
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -2, -7.15256e-06 )
+rotation = 0.845724
+z_index = 1
+texture = ExtResource( 5 )
+
 [connection signal="boost_fired" from="." to="SFX" method="_on_Player_boost_fired"]
 [connection signal="crashed" from="." to="SFX" method="_on_Player_crashed"]
 [connection signal="crashed" from="." to="VFX" method="_on_Player_crashed"]
