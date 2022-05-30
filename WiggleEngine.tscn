@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=1]
 [ext_resource path="res://Resaources/Squareskew.ttf" type="DynamicFontData" id=2]
@@ -14,9 +14,16 @@
 [ext_resource path="res://Scripts/UI/UI.gd" type="Script" id=12]
 [ext_resource path="res://Sounds/Music/castel_in_the_sky.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/Music/feeling_better.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Resaources/HeartbitXX.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 15 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
 
 [node name="Engine" type="Node2D"]
 
@@ -130,11 +137,20 @@ palettes = {
 layer = 3
 
 [node name="Debug" type="Label" parent="CanvasLayer"]
-visible = false
-margin_right = 105.0
-margin_bottom = 91.0
-text = "test"
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 112.0
+margin_bottom = 56.0
+theme = SubResource( 4 )
+text = "v0.52 (rotations corrected)"
 script = ExtResource( 8 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Debug"]
+self_modulate = Color( 0.0117647, 0.0117647, 0.0117647, 0.321569 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -32.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

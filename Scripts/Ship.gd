@@ -16,8 +16,8 @@ var steering_str_normal: float = 400
 var steering_str_squid: float = 60
 var steering_str_overheating: float = 300
 
-var steering_follow_m_normal: float = 0.8
-var steering_follow_m_squid: float = 1
+var steering_follow_m_normal: float = 0.07
+var steering_follow_m_squid: float = 0.85
 var steering_follow_m_overheating: float = 1.2
 
 var friction: float = 2
@@ -82,14 +82,12 @@ func _physics_process(delta):
 		passing_squid = true
 		passing_oh = false
 
-	steering_input = Util.get_input_axis().x
-	if speed < 1 or !accepting_input:
-		steering_input = 0
-	rotation_degrees += steering_input * steering_str * delta
-	#rotation_degrees -= int(rotation_degrees) % 5
-	velocity = velocity.rotated(
-		steering_input * deg2rad(steering_str * steering_follow_multiplier) * delta
-	)
+	# ROTATION
+	if velocity.length() > 0 and accepting_input:
+		steering_input = Util.get_input_axis().x
+		rotation_degrees += steering_input * steering_str * delta
+		var s = velocity.length()
+		velocity = s * velocity.normalized().slerp(transform.x, steering_follow_multiplier)
 
 	if velocity.length() > min_speed:
 		var f = friction
@@ -113,12 +111,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_select"):
 			ship_state = ShipState.Squid
 		if Input.is_action_just_released("ui_select"):
-			squid_saftey_t = squid_saftey
-		if squid_saftey_t > 0:
-			squid_saftey_t -= delta
-			if squid_saftey_t <= 0:
-				squid_saftey_t = 0
-				ship_state = ShipState.Normal
+			ship_state = ShipState.Normal
+
 	elif ship_state == ShipState.Overheat:
 		pass
 
@@ -132,9 +126,6 @@ func _physics_process(delta):
 			emit_signal("crashed")
 			reset_player()
 
-
-var squid_saftey = 0.06
-var squid_saftey_t = 0.0
 
 onready var start_pos = global_position
 onready var start_rot = global_rotation

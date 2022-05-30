@@ -59,16 +59,17 @@ func _on_Tween_tween_completed(object: Object, key: NodePath):
 		var next_one = CAT.current_level + 1
 		next_one = wrapi(next_one, 0, CAT.levels.size())
 		var next_name = CAT.levels[next_one]
-
+		print("Loading next level named, ", next_name)
 		if next_name == "SquidTight":
 			CAT.music.switch_track(CAT.music.threeam)
 			Wiggle.recolor.set_current_palette(Wiggle.recolor.palettes.nyx)
 
-		elif next_name == "TurnSwapper":
-			Wiggle.recolor.set_current_palette(Wiggle.recolor.palettes.destatur, 1)
+		if next_name == "MovingLine":
+			print("i'm supposed to load the last song now!")
 			CAT.music.switch_track(CAT.music.feeling)
+			Wiggle.recolor.set_current_palette(Wiggle.recolor.palettes.destatur, 1)
 
-		elif next_name == "End":
+		if next_name == "End":
 			Wiggle.recolor.set_current_palette(Wiggle.recolor.palettes.grays, 1)
 			CAT.music.fade_out()
 
