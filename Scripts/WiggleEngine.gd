@@ -18,10 +18,11 @@ var screenshotting_gate: float = 1.5
 
 
 func _process(delta):
-	screenshotting_t += delta
-	if screenshotting_t >= screenshotting_gate:
-		take_screenshot()
-		screenshotting_t = 0
+	if screenshotting:
+		screenshotting_t += delta
+		if screenshotting_t >= screenshotting_gate:
+			take_screenshot()
+			screenshotting_t = 0
 
 
 func change_scene(new_scene: PackedScene):
